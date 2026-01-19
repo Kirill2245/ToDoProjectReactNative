@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TextProps } from "react-native";
 
 type StyledTextProps = TextProps & {
-    variant?:  "title" | "subtitle" 
+    variant?:  "title" | "subtitle" | "button-text"
 };
 const StyledText: React.FC<StyledTextProps> = ({variant,style,...props}) => {
       const [appIsReady, setAppIsReady] = useState(false);
@@ -41,7 +41,8 @@ const StyledText: React.FC<StyledTextProps> = ({variant,style,...props}) => {
                 {...props}
                 style = {[
                     style,
-                    styles.base
+                    styles.base,
+                    variant === "button-text" ? styles.button_text : null
                 ]}
             />
 }
@@ -54,6 +55,10 @@ const styles = StyleSheet.create({
     },
     title:{
 
+    },
+    button_text:{
+        color:COLORS.PRIMARY_BUTTON_TEXT_COLOR,
+        fontWeight:"600"
     }
 })
 export default StyledText
