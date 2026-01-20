@@ -43,7 +43,8 @@ const StyledButton: React.FC<StyledButtonProps> = ({image ,skeletonDelay = 1000,
                 styles.base,
                 variant === "square" ? styles.square : null,
                 variant === "large" ? styles.large : null,
-                variant === 'largeLight' ? styles.largeLight : null
+                variant === 'largeLight' ? styles.largeLight : null,
+                variant === 'circule' ? styles.circule :null
             ]}
         >
             {isShowSkeleton && (
@@ -128,5 +129,13 @@ const styles = StyleSheet.create({
         opacity: 0,
         display:'none'
     },
+    circule:{
+        borderRadius:'50%',
+        width:56,
+        height:56,
+        paddingHorizontal:0,
+        paddingVertical:0,
+        opacity:1
+    }
 })
 export default StyledButton
