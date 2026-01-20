@@ -30,12 +30,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
   const openAuthForm = () => {
-    console.log('Opening auth form...');
     setIsAuthFormOpen(true);
   };
 
   const closeAuthForm = () => {
-    console.log('Closing auth form...');
     setIsAuthFormOpen(false);
   };
 
@@ -71,7 +69,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
 };
 
-// Хук для использования контекста
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {

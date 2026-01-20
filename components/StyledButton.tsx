@@ -2,17 +2,18 @@ import { COLORS } from "@/constants/ColorConst";
 
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useRef, useState } from "react";
-import { StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
+import { Image, ImageSourcePropType, StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import CircularSkeleton from "./CircularSkeleton";
 import StyledText from "./StyledText";
 type StyledButtonProps = TouchableOpacityProps & {
     lable?:string;
     icon?: React.ComponentProps<typeof Ionicons>["name"];
-    variant?:"small" | "medium" | "large" | "circule" | "square";
+    variant?:"small" | "medium" | "large" | "circule" | "square" | 'largeLight';
     sizeIcon?:number;
     skeletonDelay?: number;
+    image?: ImageSourcePropType;
 };
-const StyledButton: React.FC<StyledButtonProps> = ({skeletonDelay = 1000, sizeIcon = 41.82 ,variant,lable,icon, disabled,...props}) => {
+const StyledButton: React.FC<StyledButtonProps> = ({image ,skeletonDelay = 1000, sizeIcon = 41.82 ,variant,lable,icon,style, disabled,...props}) => {
     const [isShowSkeleton,setIsShowSkeleton] = useState<boolean>(true)
     const [contentRendered, setContentRendered] = useState<boolean>(false);
     const contentRef = useRef<View>(null);
@@ -38,9 +39,11 @@ const StyledButton: React.FC<StyledButtonProps> = ({skeletonDelay = 1000, sizeIc
             {...props}
             disabled = {disabled}
             style = {[
+                style,
                 styles.base,
                 variant === "square" ? styles.square : null,
-                variant === "large" ? styles.large : null
+                variant === "large" ? styles.large : null,
+                variant === 'largeLight' ? styles.largeLight : null
             ]}
         >
             {isShowSkeleton && (
@@ -55,14 +58,15 @@ const StyledButton: React.FC<StyledButtonProps> = ({skeletonDelay = 1000, sizeIc
                 isShowSkeleton && styles.contentHidden
                 ]}
             >
-                {lable && <StyledText variant="button-text">{lable}</StyledText>}
-                {icon && (
+                {image && <Image source = {image}/>}
+                {lable && <StyledText variant={variant === 'largeLight' ? "button-text-light" : "button-text"}>{lable}</StyledText>}
+                {icon && 
                     <Ionicons 
                         name={icon} 
                         size={sizeIcon} 
                         color={COLORS.PRIMARY_BUTTON_TEXT_COLOR} 
                     />
-                )}
+                }
             </View>
         </TouchableOpacity>
     )
@@ -96,6 +100,24 @@ const styles = StyleSheet.create({
         height:60,
         justifyContent:"space-between",
         paddingHorizontal:20
+    },
+    largeLight:{
+        width:318,
+        height:56,
+        gap:10,
+        paddingHorizontal:45,
+        justifyContent:"center",
+        alignItems:'center',
+        backgroundColor:'#ffff',
+        color:COLORS.TITLE_TEXT_COLOR,
+        elevation: 12,
+        shadowColor: '#070707',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 1.84,
     },
     contentContainer: {
         flexDirection: 'row',

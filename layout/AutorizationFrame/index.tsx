@@ -1,7 +1,7 @@
-import StyledText from '@/components/StyledText';
 import { GRADIENT } from '@/constants/ColorConst';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, View } from "react-native";
+import SignUpForm from './SignUpForm';
 
 
 const AutorizationFrame = () => {
@@ -14,7 +14,7 @@ const AutorizationFrame = () => {
             style = {{flex:1}}
         >
             <View style = {styles.container}>
-                <StyledText>dssdsasdasddsdsdasdsadsdsasasas</StyledText>
+                <SignUpForm/>
             </View>
         </LinearGradient>
     );
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems:"center",
         justifyContent:"center",
+        paddingHorizontal:39
     },
 
 })

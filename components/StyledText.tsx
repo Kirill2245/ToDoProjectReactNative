@@ -7,7 +7,7 @@ import CircularSkeleton from "./CircularSkeleton";
 
 type StyledTextProps = TextProps & {
     isShowSkeleton?:boolean;
-    variant?:  "title" | "subtitle" | "button-text"
+    variant?:  "title" | "subtitle" | "button-text" | "titleAutor" | "button-text-light" | "small" | "link"
 };
 const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, style ,...props}) => {
       const [appIsReady, setAppIsReady] = useState(false);
@@ -46,7 +46,11 @@ const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, 
                     styles.base,
                     variant === "button-text" ? styles.button_text : null,
                     variant === 'title' ? styles.title : null,
-                    variant === 'subtitle' ? styles.subtitle : null
+                    variant === 'subtitle' ? styles.subtitle : null,
+                    variant === 'titleAutor' ? styles.titleAutor : null,
+                    variant === 'button-text-light' ? styles.button_text_light : null,
+                    variant === 'small' ? styles.small : null,
+                    variant === 'link' ? styles.link : null
                 ]}
             />
 }
@@ -68,11 +72,38 @@ const styles = StyleSheet.create({
         fontWeight:"600",
         flex:1
     },
+    button_text_light:{
+        color:COLORS.TITLE_TEXT_COLOR,
+        fontWeight:"600",
+        flex:1,
+        letterSpacing:0.02,
+        lineHeight:24
+
+    },
     subtitle:{
         fontSize:16,
         opacity:0.75,
         letterSpacing:0.02,
         lineHeight:24
-    }
+    },
+    titleAutor:{
+       fontSize:30, 
+       letterSpacing:0.05,
+       lineHeight:40,
+       color:COLORS.DEEP_BLUE
+    },
+    small:{
+        fontSize:12,
+        letterSpacing:1.2,
+        lineHeight:18,
+        textAlign:'left',
+    },
+    link:{
+        fontSize:12,
+        letterSpacing:1.2,
+        lineHeight:18,
+        color:COLORS.PRIMARY_BUTTON_COLOR,
+        textDecorationLine:'underline'
+    },
 })
 export default StyledText
