@@ -1,10 +1,16 @@
 
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import OnBoardingNav from "../OnBoardingNav";
-import SplashScreen from "../SplashScreen";
+import OnBoardingNav from "./OnBoardingNav";
+import SplashScreen from "./SplashScreen";
+import WelcomeFrame from "./WelcomeFrame";
+
 const OnBoarding = () => {
-    const [showSplash, setShowSplash] = useState(true)
+    const [showSplash, setShowSplash] = useState<boolean>(true)
+    const [isShowWelcomeFarme,setIsShowWelcomeFarme] = useState<boolean>(false)
+    const handleChildData = (data:boolean):void => {
+        setIsShowWelcomeFarme(data)
+    };
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowSplash(false)
@@ -13,7 +19,13 @@ const OnBoarding = () => {
     },[])
     return (
         <View style = {styles.container}>
-             {showSplash ? <SplashScreen /> : <OnBoardingNav></OnBoardingNav>}
+             {isShowWelcomeFarme ? 
+                <WelcomeFrame/> : 
+                showSplash ? 
+                <SplashScreen /> : 
+                <OnBoardingNav 
+                    onSendData={(data:boolean) => handleChildData(data)}>
+                </OnBoardingNav>}
         </View>
     );
 };

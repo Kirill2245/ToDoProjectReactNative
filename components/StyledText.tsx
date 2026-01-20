@@ -7,7 +7,7 @@ import { StyleSheet, Text, TextProps } from "react-native";
 type StyledTextProps = TextProps & {
     variant?:  "title" | "subtitle" | "button-text"
 };
-const StyledText: React.FC<StyledTextProps> = ({variant,style,...props}) => {
+const StyledText: React.FC<StyledTextProps> = ({variant, style ,...props}) => {
       const [appIsReady, setAppIsReady] = useState(false);
 
         useEffect(() => {
@@ -42,7 +42,9 @@ const StyledText: React.FC<StyledTextProps> = ({variant,style,...props}) => {
                 style = {[
                     style,
                     styles.base,
-                    variant === "button-text" ? styles.button_text : null
+                    variant === "button-text" ? styles.button_text : null,
+                    variant === 'title' ? styles.title : null,
+                    variant === 'subtitle' ? styles.subtitle : null
                 ]}
             />
 }
@@ -51,14 +53,21 @@ const styles = StyleSheet.create({
         color:COLORS.TITLE_TEXT_COLOR,
         fontSize:20,
         fontWeight:"bold",
-        fontFamily:"EuclidCircularA-Medium"
+        fontFamily:"EuclidCircularA-Medium",
+        textAlign:"center"
     },
     title:{
-
+       fontSize:30, 
+       letterSpacing:0.05
     },
     button_text:{
         color:COLORS.PRIMARY_BUTTON_TEXT_COLOR,
-        fontWeight:"600"
+        fontWeight:"600",
+        flex:1
+    },
+    subtitle:{
+        fontSize:16,
+        opacity:0.75
     }
 })
 export default StyledText
