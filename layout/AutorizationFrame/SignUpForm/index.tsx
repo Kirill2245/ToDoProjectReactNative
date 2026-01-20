@@ -1,11 +1,13 @@
 import StyledButton from "@/components/StyledButton";
 import StyledCheckBox from "@/components/StyledCheckBox";
 import StyledText from "@/components/StyledText";
+import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Form from "./Form";
 
 const SignUpForm = () => {
+    const {openLoginForm} = useAuth()
     const [isChecked, setIsChecked] = useState<boolean>(false)
     const [isError, setIsError] = useState<boolean>(true)
     const updateStateError = (state:boolean):void => {
@@ -30,8 +32,8 @@ const SignUpForm = () => {
                 lable="Sign Up" 
                 icon="arrow-forward-outline" 
                 sizeIcon={24} 
-                style = {[{marginTop:24, marginBottom:42}, isError && {opacity:0.7}]} variant="large"
-                disabled = {isError}
+                style = {[{marginTop:24, marginBottom:42}, (isError || !isChecked) && {opacity:0.7}]} variant="large"
+                disabled = {isError || !isChecked}
             />
             <View style = {styles.boxPolicy}>
                 <StyledCheckBox checked = {isChecked} onCheck={() => setIsChecked(!isChecked)}/>
@@ -39,7 +41,7 @@ const SignUpForm = () => {
             </View>
             <View style = {styles.textContainer}>
                 <StyledText variant="small">Already have an account?</StyledText>
-                <StyledText variant="link">Login</StyledText>
+                <StyledText variant="link" onPress={openLoginForm}>Login</StyledText>
             </View>
         </View>
     ); 

@@ -1,10 +1,13 @@
 import { GRADIENT } from '@/constants/ColorConst';
+import { useAuth } from '@/context/AuthContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, View } from "react-native";
+import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
 
 const AutorizationFrame = () => {
+    const {isLoginFormOpen, isSignUpOpen} = useAuth()
     return (
         <LinearGradient
             colors={GRADIENT.PRYMARY.LIST_COLORS }
@@ -14,7 +17,8 @@ const AutorizationFrame = () => {
             style = {{flex:1}}
         >
             <View style = {styles.container}>
-                <SignUpForm/>
+                {isLoginFormOpen && <LoginForm/>}
+                {isSignUpOpen && <SignUpForm/>}
             </View>
         </LinearGradient>
     );

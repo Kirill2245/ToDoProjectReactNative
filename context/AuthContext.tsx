@@ -3,12 +3,17 @@ import React, { createContext, ReactNode, useContext, useState } from 'react';
 
 interface AuthContextType {
   isAuthFormOpen: boolean;
+  isLoginFormOpen:boolean;
+  isSignUpOpen:boolean;
   openAuthForm: () => void;
+  openLoginForm: () => void;
+  openSignUpForm: () => void;
   closeAuthForm: () => void;
   toggleAuthForm: () => void;
   user: User | null;
   login: (userData: User) => void;
   logout: () => void;
+
 }
 
 interface User {
@@ -27,16 +32,25 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthFormOpen, setIsAuthFormOpen] = useState<boolean>(false);
+  const [isLoginFormOpen, setIsLoginFormOpen] = useState<boolean>(false)
+  const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false)
   const [user, setUser] = useState<User | null>(null);
 
   const openAuthForm = () => {
     setIsAuthFormOpen(true);
   };
-
+  const openLoginForm = () => {
+    setIsLoginFormOpen(true)
+    setIsSignUpOpen(false)
+  }
+  const openSignUpForm = () => {
+    setIsSignUpOpen(true)
+    setIsLoginFormOpen(false)
+  }
   const closeAuthForm = () => {
     setIsAuthFormOpen(false);
   };
-
+  
   const toggleAuthForm = () => {
     setIsAuthFormOpen(prev => !prev);
   };
@@ -54,7 +68,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const value: AuthContextType = {
     isAuthFormOpen,
+    isLoginFormOpen,
+    isSignUpOpen,
     openAuthForm,
+    openLoginForm,
+    openSignUpForm,
     closeAuthForm,
     toggleAuthForm,
     user,
