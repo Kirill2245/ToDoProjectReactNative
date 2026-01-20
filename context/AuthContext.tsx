@@ -9,6 +9,8 @@ interface AuthContextType {
   openLoginForm: () => void;
   openSignUpForm: () => void;
   closeAuthForm: () => void;
+  closeLoginForm: () => void;
+  closeSignUpForm:() => void;
   toggleAuthForm: () => void;
   user: User | null;
   login: (userData: User) => void;
@@ -38,6 +40,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const openAuthForm = () => {
     setIsAuthFormOpen(true);
+    setIsSignUpOpen(true)
   };
   const openLoginForm = () => {
     setIsLoginFormOpen(true)
@@ -50,14 +53,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const closeAuthForm = () => {
     setIsAuthFormOpen(false);
   };
-  
+  const closeLoginForm = () => {
+    setIsLoginFormOpen(false)
+  }
+  const closeSignUpForm = () => {
+    setIsSignUpOpen(false)
+  }
   const toggleAuthForm = () => {
     setIsAuthFormOpen(prev => !prev);
   };
 
   const login = (userData: User) => {
     setUser(userData);
-    closeAuthForm(); // Закрываем форму после успешного входа
+    closeLoginForm(); // Закрываем форму после успешного входа
     // Можно добавить сохранение в AsyncStorage
   };
 
@@ -74,6 +82,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     openLoginForm,
     openSignUpForm,
     closeAuthForm,
+    closeLoginForm,
+    closeSignUpForm,
     toggleAuthForm,
     user,
     login,

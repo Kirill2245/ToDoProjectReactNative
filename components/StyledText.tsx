@@ -14,6 +14,7 @@ type StyledTextProps = TextProps & {
     "titleAutor" | 
     "button-text-light" | 
     "small" | 
+    "medium" |
     "link" |
     "lable"
 };
@@ -58,6 +59,7 @@ const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, 
                     variant === 'titleAutor' ? styles.titleAutor : null,
                     variant === 'button-text-light' ? styles.button_text_light : null,
                     variant === 'small' ? styles.small : null,
+                    variant === 'medium' ? styles.medium : null,
                     variant === 'link' ? styles.link : null,
                     variant === 'lable' ? styles.label : null
                 ]}
@@ -106,6 +108,12 @@ const styles = StyleSheet.create({
         letterSpacing:1.2,
         lineHeight:18,
         textAlign:'left',
+    },
+    medium:{
+        fontSize:14,
+        letterSpacing:0.2,
+        lineHeight:21,
+        textAlign:'left'
     },
     link:{
         fontSize:12,

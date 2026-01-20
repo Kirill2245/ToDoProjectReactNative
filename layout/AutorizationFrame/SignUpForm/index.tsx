@@ -2,16 +2,22 @@ import StyledButton from "@/components/StyledButton";
 import StyledCheckBox from "@/components/StyledCheckBox";
 import StyledText from "@/components/StyledText";
 import { useAuth } from "@/context/AuthContext";
-import { useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Form from "./Form";
-
-const SignUpForm = () => {
-    const {openLoginForm} = useAuth()
+type SignUpFormPromise = {
+    onShowSetting:() => void
+}
+const SignUpForm:React.FC<SignUpFormPromise> = ({onShowSetting}) => {
+    const {openLoginForm,closeSignUpForm} = useAuth()
     const [isChecked, setIsChecked] = useState<boolean>(false)
     const [isError, setIsError] = useState<boolean>(true)
     const updateStateError = (state:boolean):void => {
         setIsError(state)
+    }
+    const showSettingProfile = () => {
+        closeSignUpForm()
+        onShowSetting()
     }
     return(
         <View style = {styles.containForm}>
@@ -34,6 +40,7 @@ const SignUpForm = () => {
                 sizeIcon={24} 
                 style = {[{marginTop:24, marginBottom:42}, (isError || !isChecked) && {opacity:0.7}]} variant="large"
                 disabled = {isError || !isChecked}
+                onPress={showSettingProfile}
             />
             <View style = {styles.boxPolicy}>
                 <StyledCheckBox checked = {isChecked} onCheck={() => setIsChecked(!isChecked)}/>
