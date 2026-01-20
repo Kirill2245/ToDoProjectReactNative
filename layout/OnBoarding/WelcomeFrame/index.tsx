@@ -1,9 +1,11 @@
 import StyledButton from '@/components/StyledButton';
 import StyledText from '@/components/StyledText';
 import { GRADIENT } from '@/constants/ColorConst';
+import { useAuth } from '@/context/AuthContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image, StyleSheet, View } from "react-native";
 const WelcomeFrame = () => {
+    const {openAuthForm} = useAuth();
     return (
         <LinearGradient
             colors={GRADIENT.PRYMARY.LIST_COLORS }
@@ -20,7 +22,7 @@ const WelcomeFrame = () => {
                         <StyledText variant='subtitle'>Just take a look and take action!</StyledText>
                     </View>
                 </View>
-                <StyledButton lable='Explore' icon="arrow-forward" sizeIcon={25} variant='large'></StyledButton>
+                <StyledButton lable='Explore' icon="arrow-forward" sizeIcon={25} variant='large' onPress={openAuthForm}></StyledButton>
             </View>
         </LinearGradient>
 

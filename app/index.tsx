@@ -1,4 +1,4 @@
-import OnBoarding from "@/layout/OnBoarding";
+import Main from "@/layout/Main";
 import { StatusBar, StyleSheet, View } from "react-native";
 
 export default function Index(){
@@ -7,13 +7,13 @@ export default function Index(){
             <StatusBar
             barStyle={"dark-content"}
             />
-            <OnBoarding/>
+            <Main/>
         </View>
     )
 };
 
 const styles = StyleSheet.create({
     mainScreenContain:{
-        
+        flex:1
     }
 })
