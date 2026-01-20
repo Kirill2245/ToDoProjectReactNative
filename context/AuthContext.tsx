@@ -1,4 +1,4 @@
-// contexts/AuthContext.tsx
+
 import React, { createContext, ReactNode, useContext, useState } from 'react';
 
 interface AuthContextType {
@@ -15,7 +15,6 @@ interface AuthContextType {
   user: User | null;
   login: (userData: User) => void;
   logout: () => void;
-
 }
 
 interface User {
