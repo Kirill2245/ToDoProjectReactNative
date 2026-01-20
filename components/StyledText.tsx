@@ -7,7 +7,15 @@ import CircularSkeleton from "./CircularSkeleton";
 
 type StyledTextProps = TextProps & {
     isShowSkeleton?:boolean;
-    variant?:  "title" | "subtitle" | "button-text" | "titleAutor" | "button-text-light" | "small" | "link"
+    variant?:
+    "title" | 
+    "subtitle" | 
+    "button-text" | 
+    "titleAutor" | 
+    "button-text-light" | 
+    "small" | 
+    "link" |
+    "lable"
 };
 const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, style ,...props}) => {
       const [appIsReady, setAppIsReady] = useState(false);
@@ -50,7 +58,8 @@ const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, 
                     variant === 'titleAutor' ? styles.titleAutor : null,
                     variant === 'button-text-light' ? styles.button_text_light : null,
                     variant === 'small' ? styles.small : null,
-                    variant === 'link' ? styles.link : null
+                    variant === 'link' ? styles.link : null,
+                    variant === 'lable' ? styles.label : null
                 ]}
             />
 }
@@ -105,5 +114,12 @@ const styles = StyleSheet.create({
         color:COLORS.PRIMARY_BUTTON_COLOR,
         textDecorationLine:'underline'
     },
+    label:{
+        fontSize:12,
+        letterSpacing:1.2,
+        lineHeight:18,
+        color:COLORS.PRIMARY_PLACEHOLDER,
+        textAlign:'left'
+    }
 })
 export default StyledText

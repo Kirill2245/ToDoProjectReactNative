@@ -3,9 +3,14 @@ import StyledCheckBox from "@/components/StyledCheckBox";
 import StyledText from "@/components/StyledText";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import Form from "./Form";
 
 const SignUpForm = () => {
     const [isChecked, setIsChecked] = useState<boolean>(false)
+    const [isError, setIsError] = useState<boolean>(true)
+    const updateStateError = (state:boolean):void => {
+        setIsError(state)
+    }
     return(
         <View style = {styles.containForm}>
             <StyledText variant="titleAutor" style = {{marginBottom:46}}>Start your journey!</StyledText>
@@ -20,7 +25,14 @@ const SignUpForm = () => {
                 <StyledText variant="small">Or</StyledText>
                 <View style = {styles.row}></View>
             </View>
-            <StyledButton lable="Sign Up" icon="arrow-forward-outline" sizeIcon={24} style = {{marginTop:24, marginBottom:42}} variant="large"/>
+            <Form updateStateError={(state:boolean) => updateStateError(state)}/>
+            <StyledButton 
+                lable="Sign Up" 
+                icon="arrow-forward-outline" 
+                sizeIcon={24} 
+                style = {[{marginTop:24, marginBottom:42}, isError && {opacity:0.7}]} variant="large"
+                disabled = {isError}
+            />
             <View style = {styles.boxPolicy}>
                 <StyledCheckBox checked = {isChecked} onCheck={() => setIsChecked(!isChecked)}/>
                 <StyledText variant="small" style = {{opacity:0.6}}>By continuing you accept our Privacy Policy and Term of Use</StyledText>
@@ -34,16 +46,16 @@ const SignUpForm = () => {
 };
 const styles = StyleSheet.create({
     containForm:{
-       paddingTop: 62,
        flex:1,
-       alignItems:'center'
+       alignItems:'center',
     },
     styledContain:{
         gap:6,
         flexDirection:'row',
         width:'100%',
         height:18,
-        alignItems:'center'
+        alignItems:'center',
+        marginBottom:16
     },
     row:{
        flex:1,

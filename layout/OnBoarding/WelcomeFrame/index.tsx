@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         gap:208,
-        paddingTop:240
+        paddingTop:210,
+        paddingBottom:88
     },
     mainContentContain:{
         gap:40,
