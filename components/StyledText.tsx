@@ -3,11 +3,13 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TextProps } from "react-native";
+import CircularSkeleton from "./CircularSkeleton";
 
 type StyledTextProps = TextProps & {
+    isShowSkeleton?:boolean;
     variant?:  "title" | "subtitle" | "button-text"
 };
-const StyledText: React.FC<StyledTextProps> = ({variant, style ,...props}) => {
+const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, style ,...props}) => {
       const [appIsReady, setAppIsReady] = useState(false);
 
         useEffect(() => {
@@ -30,12 +32,12 @@ const StyledText: React.FC<StyledTextProps> = ({variant, style ,...props}) => {
 
         useEffect(() => {
             if (appIsReady) {
-            SplashScreen.hideAsync();
+                SplashScreen.hideAsync();
             }
         }, [appIsReady]);
 
-        if (!appIsReady) {
-            return null; 
+        if (!appIsReady && isShowSkeleton) {
+            return <CircularSkeleton></CircularSkeleton> 
         }
     return <Text 
                 {...props}
@@ -58,7 +60,8 @@ const styles = StyleSheet.create({
     },
     title:{
        fontSize:30, 
-       letterSpacing:0.05
+       letterSpacing:0.05,
+       lineHeight:40
     },
     button_text:{
         color:COLORS.PRIMARY_BUTTON_TEXT_COLOR,
@@ -67,7 +70,9 @@ const styles = StyleSheet.create({
     },
     subtitle:{
         fontSize:16,
-        opacity:0.75
+        opacity:0.75,
+        letterSpacing:0.02,
+        lineHeight:24
     }
 })
 export default StyledText

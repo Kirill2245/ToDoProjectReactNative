@@ -26,7 +26,7 @@ const StyledButton: React.FC<StyledButtonProps> = ({skeletonDelay = 1000, sizeIc
         }
 
         return () => {
-        if (timer) clearTimeout(timer);
+        if (timer) clearTimeout(timer); 
         };
     }, [contentRendered, skeletonDelay]);
 
