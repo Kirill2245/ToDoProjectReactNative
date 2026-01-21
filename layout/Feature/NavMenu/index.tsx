@@ -36,7 +36,7 @@ const NavMenu:React.FC<NavMenuProps> = ({onSelect}) => {
     return (
         <View style = {styles.menuContain}>
             <View style = {styles.relativeContain}>
-                <StyledButton icon="add-outline" variant="circule" style = {styles.addBtn}/>
+                <StyledButton icon="add-outline" variant="circule" style = {styles.addBtn} />
                 <View style = {styles.navMenuBox}>
                     {btnList.map((item,index) => (
                         <StyledButton 

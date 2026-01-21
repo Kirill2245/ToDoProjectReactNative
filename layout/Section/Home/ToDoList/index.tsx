@@ -1,3 +1,4 @@
+import StyledText from "@/components/StyledText";
 import { Todo } from "@/types/TodoType";
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
@@ -17,6 +18,11 @@ const ToDoList:React.FC<ToDoListProps> = ({todos}) => {
                     <ToDoItem time={item.timeRange} img={item.img} title={item.title} completed = {item.completed} id = {item.id}/>
                     
                 )}
+                ListEmptyComponent={
+                        <View style={styles.emptyContainer}>
+                            <StyledText variant="title">📝 There are no tasks</StyledText>
+                        </View>
+                    }
                 contentContainerStyle={styles.listContainer}
             />
         </View>
@@ -26,5 +32,9 @@ const styles = StyleSheet.create({
     listContainer: {
         gap: 8, 
     },
+    emptyContainer: {
+        padding: 20,
+        alignItems: 'center'
+    }
 })
 export default ToDoList

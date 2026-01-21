@@ -19,9 +19,9 @@ interface AuthContextType {
 }
 
 interface User {
-  id: string;
+  id: string | number;
   name: string;
-  email: string;
+  email?: string;
   // другие поля пользователя
 }
 
@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthFormOpen, setIsAuthFormOpen] = useState<boolean>(false);
   const [isLoginFormOpen, setIsLoginFormOpen] = useState<boolean>(false)
   const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false)
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>({id:1,name:'Ruslan228'});
   const [isAuthUser, setIsAuthUser] = useState<boolean>(true)
   const openAuthForm = () => {
     setIsAuthFormOpen(true);
