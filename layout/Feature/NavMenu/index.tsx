@@ -1,14 +1,16 @@
 import StyledButton from "@/components/StyledButton";
 import { COLORS } from "@/constants/ColorConst";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import HomeIcon from "./Icon/HomeIcon";
 import ReflectIcon from "./Icon/ReflectIcon";
 import SettingsIcon from "./Icon/SettingsIcon";
 import UserIcon from "./Icon/UserIcon";
 
-
-const NavMenu = () => {
+interface NavMenuProps {
+    onSelect:(data:number) => void;
+}
+const NavMenu:React.FC<NavMenuProps> = ({onSelect}) => {
     const [isBtnActive, setIsBtnActive] = useState<number>(0)
     const btnList = [
         {
@@ -28,6 +30,9 @@ const NavMenu = () => {
             icon:<UserIcon  active = {isBtnActive == 3}/>
         },
     ]
+    useEffect(() => {
+        onSelect(isBtnActive)
+    },[isBtnActive,onSelect])
     return (
         <View style = {styles.menuContain}>
             <View style = {styles.relativeContain}>
