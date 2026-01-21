@@ -12,6 +12,7 @@ export const COLORS = {
     SUCCESS:'#78B389',
     PRYMARY_RED:'#E94444',
     PRIMARY_BACKGROUND: "#131519",
+    PRYMARY_BG_MODAL:"#FBFEFB"
 }
 
 export const GRADIENT = {

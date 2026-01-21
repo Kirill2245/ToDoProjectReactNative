@@ -9,8 +9,9 @@ import UserIcon from "./Icon/UserIcon";
 
 interface NavMenuProps {
     onSelect:(data:number) => void;
+    onOpenModalCreate:() => void
 }
-const NavMenu:React.FC<NavMenuProps> = ({onSelect}) => {
+const NavMenu:React.FC<NavMenuProps> = ({onSelect,onOpenModalCreate}) => {
     const [isBtnActive, setIsBtnActive] = useState<number>(0)
     const btnList = [
         {
@@ -36,7 +37,7 @@ const NavMenu:React.FC<NavMenuProps> = ({onSelect}) => {
     return (
         <View style = {styles.menuContain}>
             <View style = {styles.relativeContain}>
-                <StyledButton icon="add-outline" variant="circule" style = {styles.addBtn} />
+                <StyledButton icon="add-outline" variant="circule" style = {styles.addBtn} onPress={() => onOpenModalCreate()}/>
                 <View style = {styles.navMenuBox}>
                     {btnList.map((item,index) => (
                         <StyledButton 
