@@ -6,7 +6,7 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 type  StyledCheckBoxProps = {
     checked:boolean;
     onCheck: () => void;
-    variant?: "circle" | "square"
+    variant?: "circle" | "square" | "circleIcons"
 }
 
 const StyledCheckBox: React.FC<StyledCheckBoxProps> = ({onCheck,checked, variant = "square"}) => {
@@ -16,7 +16,8 @@ const StyledCheckBox: React.FC<StyledCheckBoxProps> = ({onCheck,checked, variant
         style = {[
                 variant === "square" ? styles.square : null,
                 variant === "circle" ? styles.circle : null,
-                checked ? styles.isChecked : null
+                variant === 'circleIcons' ? styles.circleIcons : null,
+                (checked && (variant === "circle")) ? styles.isChecked : null
             ]}
         >
             {(checked && variant === "square") &&<Ionicons 
@@ -24,6 +25,14 @@ const StyledCheckBox: React.FC<StyledCheckBoxProps> = ({onCheck,checked, variant
                 size={13} 
                 color={"blue"}
             />}
+            {
+                variant === "circleIcons" &&
+                <Ionicons
+                    name={checked ? "checkmark-circle" : "ellipse-outline"} 
+                    size={32} 
+                    color={checked ? COLORS.SUCCESS : COLORS.TITLE_TEXT_COLOR}
+                />
+            }
 
         </TouchableOpacity>
     );
@@ -47,6 +56,9 @@ const styles = StyleSheet.create({
     },
     isChecked:{
         backgroundColor:COLORS.PRIMARY_BUTTON_COLOR, 
+    },
+    circleIcons:{
+
     }
 })
 export default StyledCheckBox

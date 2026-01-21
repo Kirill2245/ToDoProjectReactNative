@@ -10,23 +10,23 @@ export function generateMockTodos(count: number = 15): Todo[] {
     ['morning', 'afternoon', 'evening', 'allday', 'null'];
   
   // Список заголовков
-  const titles = [
-    "Утренняя зарядка",
-    "Встреча с командой",
-    "Обед",
-    "Тренировка",
-    "Чтение книги",
-    "Прием у врача",
-    "Покупки",
-    "Кино",
-    "Ужин с друзьями",
-    "Работа над проектом",
-    "Изучение английского",
-    "Уборка дома",
-    "Прогулка в парке",
-    "Посещение выставки",
-    "Визит к родственникам"
-  ];
+const titles = [
+    "Morning exercises",
+    "Team meeting",
+    "Lunch",
+    "Workout",
+    "Reading a book",
+    "Doctor's appointment",
+    "Shopping",
+    "Movie",
+    "Dinner with friends",
+    "Working on a project",
+    "Studying English",
+    "House cleaning",
+    "Walk in the park",
+    "Visiting an exhibition",
+    "Visiting relatives"
+];
   
   // Путь к изображению по умолчанию
   const DEFAULT_IMAGE = '/assets/images/def.png';

@@ -53,8 +53,8 @@ const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, 
     return <Text 
                 {...props}
                 style = {[
-                    style,
-                    styles.base,
+                    styles.basefont,
+                    !style ? styles.base : style,
                     variant === "button-text" ? styles.button_text : null,
                     variant === 'title' ? styles.title : null,
                     variant === 'subtitle' ? styles.subtitle : null,
@@ -70,11 +70,13 @@ const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, 
             />
 }
 const styles = StyleSheet.create({
+    basefont:{
+        fontFamily:"EuclidCircularA-Medium",
+    },
     base:{
         color:COLORS.TITLE_TEXT_COLOR,
         fontSize:20,
         fontWeight:400,
-        fontFamily:"EuclidCircularA-Medium",
     },
     title:{
        fontSize:30, 

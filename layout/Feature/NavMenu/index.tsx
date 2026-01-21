@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.3,
         shadowRadius: 8,
-        gap:10
+        gap:0
     }
 })
 export default NavMenu

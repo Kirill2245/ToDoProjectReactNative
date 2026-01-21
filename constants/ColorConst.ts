@@ -7,7 +7,10 @@ export const COLORS = {
     MID_GREY:"#B0B2C3",
     PRIMARY_PLACEHOLDER:"#898D9E",
     LIGHT_GREY:"#E5E6EE",
-    BRIGHT_BLUE:"#D0F1FF"
+    BRIGHT_BLUE:"#D0F1FF",
+    ITEM_TODO:'rgba(243, 216, 199, 0.3)',
+    SUCCESS:'#78B389',
+    PRYMARY_RED:'#E94444'
 }
 
 export const GRADIENT = {
