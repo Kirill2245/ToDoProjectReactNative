@@ -1,7 +1,10 @@
+import { generateMockTodos } from '@/helpers/testFunc';
+import { Todo } from '@/types/TodoType';
 import React, { createContext, ReactNode, useContext, useState } from 'react';
 
 interface MainContentContextType {
     isShowFeature:boolean;
+    todosList:Todo[];
     openFeature:() => void
 }
 
@@ -13,12 +16,13 @@ interface MainContentProviderProps {
 
 export const MainContentProvider:React.FC<MainContentProviderProps> = ({children}) => {
     const [isShowFeature,setIsShowFeature] = useState<boolean>(false)
-
+    const [todosList, setTodosList] = useState<Todo[]>(generateMockTodos(11))
     const openFeature = () => {
         setIsShowFeature(true)
     }
     const value: MainContentContextType = {
         isShowFeature,
+        todosList,
         openFeature
     }
     return (

@@ -42,9 +42,8 @@ const styles = StyleSheet.create({
         boxSizing:'border-box'
     },
     contain:{
-        flex:1,
         position:'relative',
-        backgroundColor:'#ffff'
+        backgroundColor:'#fff'
     }
 })
 export default Feature

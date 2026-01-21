@@ -73,39 +73,43 @@ const styles = StyleSheet.create({
     base:{
         color:COLORS.TITLE_TEXT_COLOR,
         fontSize:20,
-        fontWeight:"bold",
+        fontWeight:400,
         fontFamily:"EuclidCircularA-Medium",
-        textAlign:"center"
     },
     title:{
        fontSize:30, 
        letterSpacing:0.05,
-       lineHeight:40
+       lineHeight:40,
+       textAlign:"center"
     },
     button_text:{
         color:COLORS.PRIMARY_BUTTON_TEXT_COLOR,
         fontWeight:"600",
-        flex:1
+        flex:1,
+        textAlign:"center"
     },
     button_text_light:{
         color:COLORS.TITLE_TEXT_COLOR,
         fontWeight:"600",
         flex:1,
         letterSpacing:0.02,
-        lineHeight:24
+        lineHeight:24,
+        textAlign:"center"
 
     },
     subtitle:{
         fontSize:16,
         opacity:0.75,
         letterSpacing:0.02,
-        lineHeight:24
+        lineHeight:24,
+        textAlign:"center"
     },
     titleAutor:{
        fontSize:30, 
        letterSpacing:0.05,
        lineHeight:40,
-       color:COLORS.DEEP_BLUE
+       color:COLORS.DEEP_BLUE,
+       textAlign:"center"
     },
     small:{
         fontSize:12,
@@ -117,13 +121,15 @@ const styles = StyleSheet.create({
         fontSize:12,
         letterSpacing:1.2,
         lineHeight:18,
-        color:COLORS.MID_GREY
+        color:COLORS.MID_GREY,
+        textAlign:"center"
     },
     small_active:{
         fontSize:12,
         letterSpacing:1.2,
         lineHeight:18,
-        color:COLORS.PRIMARY_BUTTON_COLOR
+        color:COLORS.PRIMARY_BUTTON_COLOR,
+        textAlign:"center"
     },
     medium:{
         fontSize:14,
@@ -136,7 +142,8 @@ const styles = StyleSheet.create({
         letterSpacing:1.2,
         lineHeight:18,
         color:COLORS.PRIMARY_BUTTON_COLOR,
-        textDecorationLine:'underline'
+        textDecorationLine:'underline',
+        textAlign:"center"
     },
     label:{
         fontSize:12,
