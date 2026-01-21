@@ -1,19 +1,41 @@
 import { COLORS } from "@/constants/ColorConst";
 
 import { Ionicons } from "@expo/vector-icons";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Image, ImageSourcePropType, StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import CircularSkeleton from "./CircularSkeleton";
 import StyledText from "./StyledText";
 type StyledButtonProps = TouchableOpacityProps & {
     lable?:string;
     icon?: React.ComponentProps<typeof Ionicons>["name"];
-    variant?:"small" | "medium" | "large" | "circule" | "square" | 'largeLight';
+    variant?:
+        "small" | 
+        "medium" | 
+        "large" | 
+        "circule" | 
+        "square" | 
+        'largeLight'|
+        'menuBtn';
     sizeIcon?:number;
     skeletonDelay?: number;
     image?: ImageSourcePropType;
+    children?: React.ReactNode;
+    isActive?:boolean;
 };
-const StyledButton: React.FC<StyledButtonProps> = ({image ,skeletonDelay = 1000, sizeIcon = 41.82 ,variant,lable,icon,style, disabled,...props}) => {
+const StyledButton: React.FC<StyledButtonProps> = (
+        {
+            isActive = false,
+            children,
+            image ,
+            skeletonDelay = 1000, 
+            sizeIcon = 41.82 ,
+            variant,
+            lable,
+            icon,
+            style,
+            disabled,
+            ...props}
+    ) => {
     const [isShowSkeleton,setIsShowSkeleton] = useState<boolean>(true)
     const [contentRendered, setContentRendered] = useState<boolean>(false);
     const contentRef = useRef<View>(null);
@@ -34,6 +56,12 @@ const StyledButton: React.FC<StyledButtonProps> = ({image ,skeletonDelay = 1000,
     const handleContentLayout = () => {
         setContentRendered(true);
     };
+    const variantText = () => {
+        if (variant === 'menuBtn'){
+            return isActive ? 'small_active' : 'small_grey'
+        }
+        return variant === 'largeLight' ? "button-text-light" : "button-text"
+    }
     return (
         <TouchableOpacity
             {...props}
@@ -44,7 +72,8 @@ const StyledButton: React.FC<StyledButtonProps> = ({image ,skeletonDelay = 1000,
                 variant === "square" ? styles.square : null,
                 variant === "large" ? styles.large : null,
                 variant === 'largeLight' ? styles.largeLight : null,
-                variant === 'circule' ? styles.circule :null
+                variant === 'circule' ? styles.circule :null,
+                variant === 'menuBtn' ? styles.menuBtn : null
             ]}
         >
             {isShowSkeleton && (
@@ -55,12 +84,14 @@ const StyledButton: React.FC<StyledButtonProps> = ({image ,skeletonDelay = 1000,
                 ref={contentRef}
                 onLayout={handleContentLayout}
                 style={[
-                styles.contentContainer,
-                isShowSkeleton && styles.contentHidden
+                    styles.contentContainer,
+                    isShowSkeleton && styles.contentHidden,
+                    variant === 'menuBtn' ? {flexDirection:'column'} : null
                 ]}
             >
+                {children}
                 {image && <Image source = {image}/>}
-                {lable && <StyledText variant={variant === 'largeLight' ? "button-text-light" : "button-text"}>{lable}</StyledText>}
+                {lable && <StyledText variant={variantText()}>{lable}</StyledText>}
                 {icon && 
                     <Ionicons 
                         name={icon} 
@@ -136,6 +167,14 @@ const styles = StyleSheet.create({
         paddingHorizontal:0,
         paddingVertical:0,
         opacity:1
+    },
+    menuBtn:{
+        width:97.5,
+        height:62,
+        flexDirection:'column',
+        backgroundColor:'#ffff',
+        borderRadius:0,
+        elevation:0
     }
 })
 export default StyledButton

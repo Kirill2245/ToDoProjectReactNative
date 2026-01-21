@@ -6,11 +6,11 @@ import Feature from '../Feature';
 import OnBoarding from "../OnBoarding";
 
 const Main = () => {
-    const { isAuthFormOpen } = useAuth();
+    const { isAuthFormOpen, isAuthUser } = useAuth();
     const { isShowFeature } = useMainContent();
 
     const renderContent = () => {
-        if (isShowFeature) {
+        if (isShowFeature || isAuthUser) {
             return <Feature />; 
         } else if (isAuthFormOpen) {
             return <AutorizationFrame />; 

@@ -5,6 +5,7 @@ interface AuthContextType {
   isAuthFormOpen: boolean;
   isLoginFormOpen:boolean;
   isSignUpOpen:boolean;
+  isAuthUser:boolean
   openAuthForm: () => void;
   openLoginForm: () => void;
   openSignUpForm: () => void;
@@ -36,7 +37,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoginFormOpen, setIsLoginFormOpen] = useState<boolean>(false)
   const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false)
   const [user, setUser] = useState<User | null>(null);
-
+  const [isAuthUser, setIsAuthUser] = useState<boolean>(true)
   const openAuthForm = () => {
     setIsAuthFormOpen(true);
     setIsSignUpOpen(true)
@@ -74,6 +75,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const value: AuthContextType = {
+    isAuthUser,
     isAuthFormOpen,
     isLoginFormOpen,
     isSignUpOpen,

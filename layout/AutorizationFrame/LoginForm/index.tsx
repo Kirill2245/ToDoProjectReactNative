@@ -1,6 +1,7 @@
 import StyledButton from "@/components/StyledButton";
 import StyledText from "@/components/StyledText";
 import { useAuth } from "@/context/AuthContext";
+import { useMainContent } from "@/context/MainContentContext";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Form from "./Form";
@@ -8,9 +9,15 @@ import Form from "./Form";
 const LoginForm = () => {
     const {openSignUpForm} = useAuth()
     const [isError, setIsError] = useState<boolean>(true)
+    const {openFeature} = useMainContent()
+    const {closeAuthForm} = useAuth()
     const updateStateError = (state:boolean):void => {
         setIsError(state)
     }
+    const handleStart = () => {
+            openFeature()
+            closeAuthForm()
+        }
     return (
         <View style = {styles.containForm}>
             <StyledText variant="titleAutor" style = {{marginBottom:46}}>Welcome Back!</StyledText>
@@ -32,6 +39,7 @@ const LoginForm = () => {
                 sizeIcon={24} 
                 style = {[{marginTop:24, marginBottom:42},isError && {opacity:0.6} ]} variant="large"
                 disabled = {isError }
+                onPress={handleStart}
             />
             <View style = {styles.textContainer}>
                 <StyledText variant="small">Don’t have an account yet?</StyledText>

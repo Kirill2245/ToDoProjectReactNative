@@ -16,7 +16,9 @@ type StyledTextProps = TextProps & {
     "small" | 
     "medium" |
     "link" |
-    "lable"
+    "lable" |
+    "small_grey" |
+    "small_active" 
 };
 const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, style ,...props}) => {
       const [appIsReady, setAppIsReady] = useState(false);
@@ -59,9 +61,11 @@ const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, 
                     variant === 'titleAutor' ? styles.titleAutor : null,
                     variant === 'button-text-light' ? styles.button_text_light : null,
                     variant === 'small' ? styles.small : null,
+                    variant === 'small_grey' ? styles.small_grey : null,
+                    variant === 'small_active' ? styles.small_active :null,
                     variant === 'medium' ? styles.medium : null,
                     variant === 'link' ? styles.link : null,
-                    variant === 'lable' ? styles.label : null
+                    variant === 'lable' ? styles.label : null,
                 ]}
             />
 }
@@ -108,6 +112,18 @@ const styles = StyleSheet.create({
         letterSpacing:1.2,
         lineHeight:18,
         textAlign:'left',
+    },
+    small_grey:{
+        fontSize:12,
+        letterSpacing:1.2,
+        lineHeight:18,
+        color:COLORS.MID_GREY
+    },
+    small_active:{
+        fontSize:12,
+        letterSpacing:1.2,
+        lineHeight:18,
+        color:COLORS.PRIMARY_BUTTON_COLOR
     },
     medium:{
         fontSize:14,

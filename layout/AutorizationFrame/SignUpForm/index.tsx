@@ -38,7 +38,7 @@ const SignUpForm:React.FC<SignUpFormPromise> = ({onShowSetting}) => {
                 lable="Sign Up" 
                 icon="arrow-forward-outline" 
                 sizeIcon={24} 
-                style = {[{marginTop:24, marginBottom:42}, (isError || !isChecked) && {opacity:0.7}]} variant="large"
+                style = {[{marginTop:24, marginBottom:32}, (isError || !isChecked) && {opacity:0.7}]} variant="large"
                 disabled = {isError || !isChecked}
                 onPress={showSettingProfile}
             />
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height:18,
         alignItems:'center',
-        marginBottom:16
+        marginBottom:14
     },
     row:{
        flex:1,
