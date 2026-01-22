@@ -10,7 +10,9 @@ type StyledInputProps = InputProps & {
 
 const StyledInputLable: React.FC<StyledInputProps> = ({ customLable ,...props }) => {
         return (
-            <View style = {styles.conatinInputLable}>
+            <View style = {[
+                    styles.conatinInputLable,
+                ]}>
                 {customLable && <StyledText variant="lable">{customLable}</StyledText>}
                 <StyledInput {...props} />
             </View>
@@ -23,7 +25,8 @@ const styles = StyleSheet.create({
         width:'100%',
         gap:4,
         height:70
-    }
+    },
+
 });
 
 export default StyledInputLable;

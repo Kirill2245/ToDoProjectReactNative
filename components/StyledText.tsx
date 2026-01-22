@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
        fontSize:30, 
        letterSpacing:0.05,
        lineHeight:40,
-       textAlign:"center"
+       textAlign:"center",
+       fontWeight:'bold'
     },
     button_text:{
         color:COLORS.PRIMARY_BUTTON_TEXT_COLOR,

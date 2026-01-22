@@ -1,4 +1,4 @@
-type TimeRange = {
+export type TimeRange = {
     start: Date;
     end: Date;
 };

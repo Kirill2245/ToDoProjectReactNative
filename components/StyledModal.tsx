@@ -39,10 +39,11 @@ const styles = StyleSheet.create({
     content:{
         paddingVertical:25,
         paddingHorizontal:21,
-        borderRadius:34,
+        borderTopLeftRadius: 34,
+        borderTopRightRadius: 34,
         width:"100%",
-        height:"99%",
-        backgroundColor:COLORS.LIGHT_GREY
+        height:"95%",
+        backgroundColor:COLORS.MODAL_BG
     }
 })
 export default StyledModal
