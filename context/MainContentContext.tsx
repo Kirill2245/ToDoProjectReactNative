@@ -1,5 +1,5 @@
 import { generateMockTodos } from '@/helpers/testFunc';
-import { Todo } from '@/types/TodoType';
+import { Todo, TodoTime } from '@/types/TodoType';
 import React, { createContext, ReactNode, useContext, useState } from 'react';
 
 interface MainContentContextType {
@@ -8,6 +8,7 @@ interface MainContentContextType {
     openFeature:() => void;
     onCheckTodo:(id:Todo['id']) => void;
     onDeleteTodo:(id:Todo['id']) => void;
+    onCreateTodo:(title:Todo['title'], timeRange: TodoTime, date: Date) => void
 }
 
 const MainContentContext = createContext<MainContentContextType | undefined>(undefined);
@@ -28,12 +29,23 @@ export const MainContentProvider:React.FC<MainContentProviderProps> = ({children
     const onDeleteTodo = (id:Todo["id"]) => {
         setTodosList(todosList.filter((todo) => todo.id !== id)) 
     }
+    const onCreateTodo = (title:Todo['title'], timeRange: TodoTime, date: Date):void =>{
+        setTodosList([...todosList, 
+        {id:todosList.length, 
+            title:title, 
+            timeRange:timeRange, 
+            date:date, 
+            completed:false, 
+            img:'/assets/images/def.png'
+        }])
+    }
     const value: MainContentContextType = {
         isShowFeature,
         todosList,
         openFeature,
         onCheckTodo,
-        onDeleteTodo
+        onDeleteTodo,
+        onCreateTodo
     }
     return (
         <MainContentContext.Provider value={value}>

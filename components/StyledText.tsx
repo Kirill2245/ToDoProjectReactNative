@@ -18,7 +18,8 @@ type StyledTextProps = TextProps & {
     "link" |
     "lable" |
     "small_grey" |
-    "small_active" 
+    "small_active" |
+    "create"
 };
 const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, style ,...props}) => {
       const [appIsReady, setAppIsReady] = useState(false);
@@ -66,6 +67,7 @@ const StyledText: React.FC<StyledTextProps> = ({isShowSkeleton = false,variant, 
                     variant === 'medium' ? styles.medium : null,
                     variant === 'link' ? styles.link : null,
                     variant === 'lable' ? styles.label : null,
+                    variant === 'create' ? styles.create : null
                 ]}
             />
 }
@@ -154,6 +156,10 @@ const styles = StyleSheet.create({
         lineHeight:18,
         color:COLORS.PRIMARY_PLACEHOLDER,
         textAlign:'left'
+    },
+    create:{
+        color:COLORS.PRIMARY_BUTTON_COLOR,
+        fontSize:16
     }
 })
 export default StyledText

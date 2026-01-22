@@ -12,7 +12,7 @@ type TimeSlideProps = {
 
 const TimeSlide: React.FC<TimeSlideProps> = ({ setTimeRange }) => {
     const [isShowGetTime, setIsShowGetTime] = useState<boolean>(false);
-    const [isOnAllDate, setIsOnAllDate] = useState<boolean>(false);
+    const [isOnAllDate, setIsOnAllDate] = useState<boolean>(true);
     const [dateRange, setDateRange] = useState<TodoTime>(null);
     const [startTime, setStartTime] = useState<string>("02 : 00");
     const [endTime, setEndTime] = useState<string>("04 : 00");

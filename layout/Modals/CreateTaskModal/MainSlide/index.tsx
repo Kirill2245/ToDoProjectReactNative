@@ -2,15 +2,17 @@ import StyledInput from '@/components/StyledInput';
 import StyledText from '@/components/StyledText';
 import TouchableSelectImage from '@/components/TouchableSelectImage';
 import { COLORS } from '@/constants/ColorConst';
-import { TimeRange, Todo, TodoTime } from '@/types/TodoType';
+import { TimeRange, TodoTime } from '@/types/TodoType';
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 type MainSlideProps = {
     isShowDate:() => void;
     isShowTime:() => void;
+    setTitle:(title:string) => void;
     selectDate?:string ;
-    selectTimeRange:TodoTime | TimeRange
+    selectTimeRange:TodoTime | TimeRange;
+    selectTitleTask:string ;
 
 }
 const formatTimeRange = (dateRange: TimeRange) => {
@@ -33,8 +35,7 @@ const formatTimeRange = (dateRange: TimeRange) => {
 
   return `${formatTime(dateRange.start)} to ${formatTime(dateRange.end)}`;
 };
-const MainSlide:React.FC<MainSlideProps> = ({isShowTime,isShowDate,selectDate,selectTimeRange}) => {
-    const [valueTitleTodo, setTitleTodo] = useState<Todo['title']>('')
+const MainSlide:React.FC<MainSlideProps> = ({setTitle,isShowTime,isShowDate,selectDate,selectTimeRange,selectTitleTask}) => {
     return (
         <View style={styles.contain}>
             <TouchableSelectImage/>
@@ -42,12 +43,12 @@ const MainSlide:React.FC<MainSlideProps> = ({isShowTime,isShowDate,selectDate,se
                 <StyledInput 
                     placeholder='New Task' 
                     variant='stells' 
-                    value={valueTitleTodo} 
-                    onChangeText={setTitleTodo}
+                    value={selectTitleTask} 
+                    onChangeText={setTitle}
                     maxLength={50}
                 />
                 <StyledText variant='medium' style = {{color:COLORS.MID_GREY}}>
-                    {valueTitleTodo.length != 0 ? `${valueTitleTodo.length}/50`:'Tap to rename'}
+                    {selectTitleTask.length != 0 ? `${selectTitleTask.length}/50`:'Tap to rename'}
                 </StyledText>
             </View>
             <View style = {styles.form}>

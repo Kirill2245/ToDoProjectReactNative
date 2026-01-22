@@ -17,7 +17,8 @@ type StyledButtonProps = TouchableOpacityProps & {
         'largeLight'|
         'menuBtn'|
         'clearBtn'|
-        'closeModal'
+        'closeModal'|
+        'craete'
         ;
     sizeIcon?:number;
     skeletonDelay?: number;
@@ -63,6 +64,9 @@ const StyledButton: React.FC<StyledButtonProps> = (
         if (variant === 'menuBtn'){
             return isActive ? 'small_active' : 'small_grey'
         }
+        if (variant === 'craete'){
+            return 'create'
+        }
         return variant === 'largeLight' ? "button-text-light" : "button-text"
     }
     return (
@@ -78,7 +82,8 @@ const StyledButton: React.FC<StyledButtonProps> = (
                 variant === 'circule' ? styles.circule :null,
                 variant === 'menuBtn' ? styles.menuBtn : null,
                 variant === 'clearBtn' ? styles.clearBtn : null,
-                variant === 'closeModal' ? styles.closeModal: null
+                variant === 'closeModal' ? styles.closeModal: null,
+                variant === 'craete' ? styles.create : null
             ]}
         >
             {isShowSkeleton && (
@@ -193,6 +198,12 @@ const styles = StyleSheet.create({
         paddingVertical:0,
         borderRadius:'50%',
         backgroundColor:'#ffffff00',
+        elevation:0
+    },
+    create:{
+        width:80,
+        height:24,
+        backgroundColor:'#00000000',
         elevation:0
     }
 })
